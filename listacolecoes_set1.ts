@@ -1,30 +1,81 @@
 import leia from 'readline-sync';
-const lista: Set<number> = new Set<number>([2, 5, 1, 3, 4, 9, 7, 8, 10, 6]);
-let busca: number
-let continua, tem: boolean
+const lista: Set<number> = new Set<number>();
+const lista2: Set<number> = new Set<number>();
 
-console.log("** Exercício 2 - Set **");
-console.log("\n PESQUISE NA LISTA!");
+console.log("** Exercício 3 - Set **");
+
+console.log("\n LISTA ÚNICA!");
+
 /** 
-Escreva um programa para criar uma Collection Set do tipo number, inicializada com 10 valores inteiros. 
-O programa deverá solicitar ao usuário, que ele digite via teclado 1 número inteiro 
-e caso ele seja encontrado na Collection Set, exiba na tela a mensagem: O Número NN foi encontrado! 
-Caso o número não seja encontrado, o programa deverá exibir na tela a mensagem: O número NN não foi encontrado!
+Escreva um programa para criar uma Collection Set do tipo number. O programa
+deverá solicitar ao usuário, que ele digite via teclado 10 valores inteiros não repetidos
+e adicione-os individualmente na Collection Set. Em seguida, faça o que se pede:
+● Mostre na tela todos os elementos da Collection Set.
 */
-do{
-busca = leia.questionInt("\nDigite o numero que deseja encontrar: " );
-tem = lista.has(busca)
 
-if ((tem == true))
+for(let i =0; i < 10; i++)
 {
-    console.log(`O número ${busca} foi encontrado`);
+    lista.add(leia.questionInt("\nDigite um numero: " ));
 }
-else
+
+console.log("\n**************************")
+console.log("Lista de números adicionados: ")
+//console.log(lista) mostra os elementos na mesma linha
+for(let num of lista)
 {
-    console.log(`O número ${busca} não foi encontrado!`);
-} 
+    console.log(num);
+}
 
-continua = leia.keyInYNStrict(`\nDeseja realizar uma nova busca? `)
-} while (continua == true)
+console.log("Lista de números em ordem crescente: ")
 
-console.log("\nAgradecemos por utilizar o mecanismo!");
+function compareAs(a: number,b: number)
+{
+    return a-b;
+}
+
+const listaArray = Array.from(lista);
+listaArray.sort(compareAs);
+//console.log(listaArray);
+for (let num of listaArray)
+{
+    console.log(num);
+}
+
+console.log("\n*****************************************")
+console.log("Versão avisando que o número está repetido: ")
+let controle: boolean
+controle = false
+
+for(let i = 0; i < 10; i++)
+{
+    do{
+        let item
+        item = leia.questionInt("\nDigite um numero: " );
+        if(lista2.has(item) == false)
+        {
+            lista2.add(item);
+            controle = false
+        }
+        else
+        {
+            console.log("Este número já foi adicionado. Tente novamente.");
+            controle = true
+        }
+    } while (controle == true) 
+}
+
+console.log("\nLista de números adicionados: ")
+//console.log(lista) mostra os elementos na mesma linha
+for(let num of lista2)
+{
+    console.log(num);
+}
+
+console.log("\nLista de números em ordem crescente: ")
+const lista2Array = Array.from(lista2);
+lista2Array.sort(compareAs);
+//console.log(listaArray);
+for (let num of lista2Array)
+{
+    console.log(num);
+}

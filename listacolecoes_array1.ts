@@ -1,32 +1,35 @@
 import leia from 'readline-sync';
-const lista: Array<number> = new Array<number>(2, 5, 1, 3, 4, 9, 7, 8, 10, 6);
-let busca: number
-let continua: boolean
+const lista: Array<string> = new Array<string>();
 
 console.log("** Exercício 1 - Array **");
 
-console.log("\n PESQUISE NA LISTA!");
+console.log("\n LISTA COLORIDA!");
 
 /** 
-Escreva um programa para criar uma Collection Array do tipo number, inicializada com 10 valores inteiros. 
-O programa deverá solicitar ao usuário, que ele digite via teclado 1 número inteiro 
-e caso ele seja encontrado no Array, exiba na tela a posição deste número na Collection. 
-Caso o número não seja encontrado, o programa deverá exibir na tela a mensagem: O número NN não foi encontrado!
+Escreva um programa para criar uma Collection Array de Objetos do tipo string. O
+programa deverá solicitar ao usuário, que ele digite via teclado 5 cores e deverá
+adicioná-las individualmente no Array. Em seguida, faça o que se pede:
+● Mostre na tela todas as cores adicionadas.
+● Mostre na tela todas as cores adicionadas, ordenadas em ordem crescente.
 */
 
-do{
-busca = leia.questionInt("\nDigite o numero que deseja encontrar: " );
-
-if ((lista.indexOf(busca) >= 0))
+for(let i =0; i < 5; i++)
 {
-    console.log(`O número ${busca} está localizado na posição ${lista.indexOf(busca)}`);
+    lista.push(leia.question("\nDigite uma cor: " ));
+    
 }
-else
+
+console.log("\n**********************************")
+console.log("Lista de todas as cores adicionadas: ")
+//console.log(lista) mostra os elementos na mesma linha
+for(let cor of lista)
 {
-    console.log(`O número ${busca} não foi encontrado!`);
-} 
+    console.log(cor);
+}
 
-continua = leia.keyInYNStrict(`\nDeseja realizar uma nova busca? `)
-} while (continua == true)
-
-console.log("\nAgradecemos por utilizar o mecanismo!");
+console.log("\nCores em ordem alfabética: ")
+lista.sort()
+for(let cor of lista)
+{
+    console.log(cor);
+}
